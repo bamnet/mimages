@@ -1,6 +1,6 @@
 baseURL = 'http://mimages.brispace.net/'
 languageCode = 'en-us'
-title = 'MImages'
+title = 'mimages'
 theme = 'alpha'
 
 [permalinks]
