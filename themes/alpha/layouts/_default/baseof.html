@@ -7,6 +7,8 @@
         {{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
         <title>{{ $title }}</title>
         {{ block "meta" . }}{{ end }}
+        <meta name="twitter:creator" content="@bamnet" />
+        <meta name="twitter:title" content="{{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}">
     </head>
     <body>
         {{- partial "header.html" . -}}
