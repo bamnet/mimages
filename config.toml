@@ -1,0 +1,7 @@
+baseURL = 'http://example.org/'
+languageCode = 'en-us'
+title = 'MImages'
+theme = 'alpha'
+
+[permalinks]
+    photos = '/v1/photos/:filename/'

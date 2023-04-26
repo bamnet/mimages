@@ -1,0 +1,40 @@
+{{ define "meta" }}
+{{ $image := (index (.Resources.ByType "image") 0 ) }}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "ImageObject",
+  "contentUrl": {{ $image.Permalink }},
+  "creditText": "Mimages Project",
+  "license": "http://creativecommons.org/licenses/by/4.0/",
+  "acquireLicensePage": "http://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "Person",
+    "name": "Brian Michalski"
+    },
+  "copyrightNotice": "Brian Michalski",
+{{ with $image.Exif }}
+  "locationCreated": {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "{{ .Lat }}",
+      "longitude": "{{ .Long }}"
+    }
+  }
+{{ end }}
+}
+</script>
+{{ end }}
+
+
+{{ define "main" }}
+
+{{ $image := (index (.Resources.ByType "image") 0 ) }}
+<h1>{{ .Description }}</h1>
+<a href="{{$image.Permalink}}">
+  <img alt="{{ .Description }}" src="{{$image.Permalink}}" width="800px;">
+</a>
+{{ end }}
