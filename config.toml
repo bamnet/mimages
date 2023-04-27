@@ -1,4 +1,4 @@
-baseURL = 'http://mimages.brispace.net/'
+baseURL = 'https://mimages.brispace.net/'
 languageCode = 'en-us'
 title = 'mimages'
 theme = 'alpha'
