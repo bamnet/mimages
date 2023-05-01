@@ -1,7 +1,0 @@
-baseURL = 'https://mimages.brispace.net/'
-languageCode = 'en-us'
-title = 'mimages'
-theme = 'alpha'
-
-[permalinks]
-    photos = '/v1/photos/:filename/'
