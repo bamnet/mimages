@@ -1,0 +1,15 @@
+<h1><%= @photo.description %></h1>
+<div id="image">
+    <a href="#" >
+        <img alt="<%= @photo.description %>" src="#" width="10" height="10">
+        <br />
+        Full Image
+    </a>
+  </div>
+  <dl>
+    <dt>Photo Captured:</dt>
+    <dd><%= @photo.captured_at.to_fs(:short_date) %></dd>
+    
+    <dt>Photo Location:</dt>
+    <dd><%= @photo.latitude %>, <%= @photo.longitude %></dd>
+</dl>
