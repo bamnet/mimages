@@ -1,5 +1,5 @@
 <h1>New Photo</h1>
-<%= form_with model: @photo do |form| %>
+<%= form_with model: @photo, data: { controller: "photo-upload" } do |form| %>
     <div>
         <%= form.label :title %><br>
         <%= form.text_field :title %>
@@ -10,7 +10,17 @@
     </div>
     <div>
         <%= form.label :photo %><br>
-        <%= form.file_field :photo %>
+        <%= form.file_field :photo, data: {photo_upload_target: "file", action: "change->photo-upload#changed" } %>
+    </div>
+    <div>
+        <%= form.label :captured_at %><br>
+        <%= form.datetime_field :captured_at, step: 1, data: {photo_upload_target: "capturedAt"} %>
+    </div>
+    <div>
+        <%= field_set_tag 'Location' do %><br>
+        <%= form.text_field :latitude, data: {photo_upload_target: "latitude"} %>
+        <%= form.text_field :longitude, data: {photo_upload_target: "longitude"} %>
+        <% end %>
     </div>
     <div>
         <%= form.submit %>
