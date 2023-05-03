@@ -7,9 +7,13 @@
     </a>
   </div>
   <dl>
-    <dt>Photo Captured:</dt>
-    <dd><%= @photo.captured_at.to_fs(:short_date) %></dd>
+    <% if !@photo.captured_at.blank? %>
+      <dt>Photo Captured:</dt>
+      <dd><%= @photo.captured_at.to_fs(:short_date) %></dd>
+    <% end %>
     
-    <dt>Photo Location:</dt>
-    <dd><%= @photo.latitude %>, <%= @photo.longitude %></dd>
+    <% if @photo.has_location? %>
+      <dt>Photo Location:</dt>
+      <dd><%= @photo.latitude %>, <%= @photo.longitude %></dd>
+    <% end %>
 </dl>
