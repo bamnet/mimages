@@ -5,14 +5,6 @@ import ExifReader from "exifreader";
 export default class extends Controller {
     static targets = ["file", "capturedAt", "latitude", "longitude"];
 
-    connect() {
-        const fileField = this.fileTarget;
-        console.log(fileField);
-
-        const capturedAtField = this.capturedAtTarget;
-        console.log(capturedAtField)
-    }
-
     async changed() {
         const file = this.fileTarget.files[0];
         const tags = await ExifReader.load(file);
