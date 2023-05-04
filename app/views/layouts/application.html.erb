@@ -8,6 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <% if content_for?(:ldjson) %>
+      <script type="application/ld+json">
+        <%= yield :ldjson %>
+      </script>
+    <% end %>
   </head>
 
   <body>

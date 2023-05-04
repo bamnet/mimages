@@ -1,3 +1,10 @@
+<% content_for :ldjson do
+  ldjson = @photo.ldjson
+  ldjson["contentUrl"] = url_for(@photo.photo)
+%>
+<%= raw(ldjson.to_json) %>
+<% end %>
+
 <h1><%= @photo.description %></h1>
 <div id="image">
     <a href="<%= url_for(@photo.photo)%>" >

@@ -16,4 +16,28 @@ class Photo < ApplicationRecord
   def has_location?
     (!latitude.blank? && !longitude.blank? && latitude != 0 && longitude != 0)
   end
+
+  def ldjson
+    {
+      "@context": "https://schema.org/",
+      "@type": "ImageObject",
+      creditText: "Mimages Project",
+      license: "http://creativecommons.org/licenses/by/4.0/",
+      acquireLicensePage: "http://creativecommons.org/licenses/by/4.0/",
+      creator: {
+        "@type": "Person",
+        name: "Brian Michalski"
+      },
+      copyrightNotice: "Brian Michalski",
+      locationCreated: {
+        "@context": "https://schema.org",
+        "@type": "Place",
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: latitude,
+          longitude: longitude
+        }
+      }
+    }
+  end
 end
