@@ -1,3 +1,4 @@
+<% content_for(:html_title) { @photo.title } %>
 <% content_for :ldjson do
   ldjson = @photo.ldjson
   ldjson["contentUrl"] = url_for(@photo.photo)
