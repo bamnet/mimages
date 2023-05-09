@@ -71,3 +71,9 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# Use OmniAuth to support multi-provider authentication [https://github.com/omniauth/omniauth]
+gem "omniauth"
+# Provides a mitigation against CVE-2015-9284 [https://github.com/cookpad/omniauth-rails_csrf_protection]
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-google-oauth2"

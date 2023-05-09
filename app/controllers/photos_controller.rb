@@ -1,7 +1,9 @@
 class PhotosController < ApplicationController
+  skip_before_action :require_auth!, only: [:index, :show]
+
   def index
     @photos = Photo.all
-  end
+  end 
 
   def show
     @photo = Photo.find_by(uuid: params[:uuid])

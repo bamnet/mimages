@@ -18,9 +18,17 @@
 
   <body>
     <header>
-      <div id="logo">
-          <h1><a href="/">mimages</a></h1>
-      </div>
+      <nav>
+        <h1><a href="/">mimages</a></h1>
+        <ul>
+          <% if !Current.user.nil? %>
+          <li><%= Current.user.email %></li>
+          <li><%= button_to "Log out", Current.session, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Sign In", sign_in_path %></li>
+          <% end %>
+        </ul>
+      </nav>
     </header>
     <main>
       <%= yield %>

@@ -34,28 +34,35 @@ main {
 }
 
 header {
-  padding: 10px 0px;
+  width: 100%;
   background-color: #d7ecd1;
 }
 
-#logo {
-  width: 100%;
+nav > * {
+  padding: 0;
+  margin: 0;
+}
+
+nav {
   max-width: 960px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
 
-#logo > h1 {
-  margin: 0px;
+nav ul {
+  display: flex;
+  list-style: none;
 }
 
-#logo > h1 > a {
+nav li {
+  padding-left: 1rem; 
+}
+
+nav a {
   color: inherit;
   text-decoration: inherit;
-}
-
-h1 {
-  font-size: 2em;
-  margin-bottom: .5em;
 }
 
 #image {
