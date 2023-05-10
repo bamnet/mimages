@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get  "sign_in", to: "sessions#new"
-  resources :sessions, only: [:index, :show, :destroy]
+  delete  "sign_out", to: "sessions#destroy"
   get  "/auth/failure",            to: "sessions/omniauth#failure"
   get  "/auth/:provider/callback", to: "sessions/omniauth#create"
   post "/auth/:provider/callback", to: "sessions/omniauth#create"

@@ -21,9 +21,9 @@
       <nav>
         <h1><a href="/">mimages</a></h1>
         <ul>
-          <% if !Current.user.nil? %>
-          <li><%= Current.user.email %></li>
-          <li><%= button_to "Log out", Current.session, method: :delete %></li>
+          <% if !current_user.nil? %>
+          <li><%= current_user.email %></li>
+          <li><%= button_to "Sign Out", sign_out_path, method: :delete %></li>
           <% else %>
           <li><%= link_to "Sign In", sign_in_path %></li>
           <% end %>
