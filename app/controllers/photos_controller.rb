@@ -14,6 +14,11 @@ class PhotosController < ApplicationController
   end
 
   def create
+    if !current_user.allowed_uploader
+      head :forbidden
+      return
+    end
+
     @photo = Photo.new(photo_params)
 
     if @photo.save
