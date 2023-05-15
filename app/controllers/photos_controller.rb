@@ -20,6 +20,7 @@ class PhotosController < ApplicationController
     end
 
     @photo = Photo.new(photo_params)
+    @photo.user = current_user
 
     if @photo.save
       redirect_to @photo

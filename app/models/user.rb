@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :photos, dependent: :destroy
+
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   before_validation if: -> { email.present? } do
