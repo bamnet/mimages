@@ -6,7 +6,7 @@ on:
 
   workflow_dispatch:
 
-obs:
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
