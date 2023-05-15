@@ -1,0 +1,22 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+obs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true 
+      - uses: miloserdow/capistrano-deploy@v3
+        with:
+          target: production
+          deploy_key: ${{ secrets.DEPLOY_KEY }}
+          enc_rsa_key_val: ${{ secrets.RSA_KEY_VAL }}
