@@ -7,14 +7,17 @@ export default class extends Controller {
 
     async changed() {
         const file = this.fileTarget.files[0];
-        const tags = await ExifReader.load(file);
-        console.log(tags);
+        const tags = await ExifReader.load(file, { expanded: true });
 
-        const exifImageDate = tags['DateTimeOriginal'].description;
+        const exifImageDate = tags.exif["DateTimeOriginal"].description;
         this.capturedAtTarget.value = this.#dateFormat(exifImageDate);
 
-        this.latitudeTarget.value = tags['GPSLatitude'].description;
-        this.longitudeTarget.value = tags['GPSLongitude'].description;
+        if (Object.hasOwn(tags, "gps")) {
+            this.latitudeTarget.value = tags.gps.Latitude;
+            this.longitudeTarget.value = tags.gps.Longitude;
+        } else {
+            console.debug("No GPS data in photo.")
+        }
     }
 
     #dateFormat(input) {
