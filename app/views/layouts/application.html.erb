@@ -9,6 +9,10 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
 
+    <% if content_for?(:meta_description) %>
+    <meta name="description" content="<%= yield(:meta_description) %>">
+    <% end %>
+
     <% if content_for?(:ldjson) %>
       <script type="application/ld+json">
         <%= yield :ldjson %>
