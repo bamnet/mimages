@@ -286,6 +286,7 @@ DEPENDENCIES
   capybara
   debug
   ed25519
+  faraday
   image_processing (~> 1.2)
   importmap-rails
   jbuilder

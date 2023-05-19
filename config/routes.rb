@@ -8,5 +8,7 @@ Rails.application.routes.draw do
   root "photos#index"
 
   resources :photos, only: :show, path: "v1/photos", param: :uuid
-  resources :photos, except: :show
+  resources :photos, param: :uuid do
+    get 'map', on: :member
+  end
 end

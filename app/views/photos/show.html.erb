@@ -25,5 +25,6 @@
   <% if @photo.has_location? %>
     <dt>Photo Location:</dt>
     <dd><%= @photo.latitude %>, <%= @photo.longitude %></dd>
+    <%= image_tag map_photo_path(@photo), alt: "Map showing a red pin which marks the location the photo was taken" %>
   <% end %>
 </dl>
