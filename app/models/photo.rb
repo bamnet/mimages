@@ -15,7 +15,7 @@ class Photo < ApplicationRecord
     uuid
   end
 
-  def has_location?
+  def location?
     (latitude.present? && longitude.present? && latitude != 0 && longitude != 0)
   end
 

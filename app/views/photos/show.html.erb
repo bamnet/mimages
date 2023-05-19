@@ -22,7 +22,7 @@
     <dd><%= @photo.captured_at.to_fs(:short_date) %></dd>
   <% end %>
   
-  <% if @photo.has_location? %>
+  <% if @photo.location? %>
     <dt>Photo Location:</dt>
     <dd><%= @photo.latitude %>, <%= @photo.longitude %></dd>
     <%= image_tag map_photo_path(@photo), alt: "Map showing a red pin which marks the location the photo was taken" %>
