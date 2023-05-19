@@ -6,7 +6,7 @@ class Photo < ApplicationRecord
   end
 
   before_create do
-    require "securerandom"
+    require 'securerandom'
 
     self.uuid = SecureRandom.uuid if uuid.blank?
   end
@@ -16,28 +16,28 @@ class Photo < ApplicationRecord
   end
 
   def has_location?
-    (!latitude.blank? && !longitude.blank? && latitude != 0 && longitude != 0)
+    (latitude.present? && longitude.present? && latitude != 0 && longitude != 0)
   end
 
   def ldjson
     {
-      "@context": "https://schema.org/",
-      "@type": "ImageObject",
-      creditText: "Mimages Project",
-      license: "http://creativecommons.org/licenses/by/4.0/",
-      acquireLicensePage: "http://creativecommons.org/licenses/by/4.0/",
+      "@context": 'https://schema.org/',
+      "@type": 'ImageObject',
+      creditText: 'Mimages Project',
+      license: 'http://creativecommons.org/licenses/by/4.0/',
+      acquireLicensePage: 'http://creativecommons.org/licenses/by/4.0/',
       creator: {
-        "@type": "Person",
-        name: "Brian Michalski"
+        "@type": 'Person',
+        name: 'Brian Michalski'
       },
-      copyrightNotice: "Brian Michalski",
+      copyrightNotice: 'Brian Michalski',
       locationCreated: {
-        "@context": "https://schema.org",
-        "@type": "Place",
+        "@context": 'https://schema.org',
+        "@type": 'Place',
         geo: {
-          "@type": "GeoCoordinates",
-          latitude: latitude,
-          longitude: longitude
+          "@type": 'GeoCoordinates',
+          latitude:,
+          longitude:
         }
       }
     }

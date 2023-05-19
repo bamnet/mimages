@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class PhotosController < ApplicationController
-  skip_before_action :require_auth!, only: [:index, :show, :map]
+  skip_before_action :require_auth!, only: %i[index show map]
 
   def index
     @photos = Photo.all
-  end 
+  end
 
   def show
     @photo = Photo.find_by(uuid: params[:uuid])
@@ -14,7 +16,7 @@ class PhotosController < ApplicationController
   end
 
   def create
-    if !current_user.allowed_uploader
+    unless current_user.allowed_uploader
       head :forbidden
       return
     end
@@ -32,27 +34,28 @@ class PhotosController < ApplicationController
   def map
     @photo = Photo.find_by(uuid: params[:uuid])
 
-    conn = Faraday.new('https://maps.googleapis.com',
-      request: {timeout: 5},
+    conn = Faraday.new(
+      'https://maps.googleapis.com',
+      request: { timeout: 5 },
       params: {
-        key: Rails.application.credentials.dig(:maps_api_key),
+        key: Rails.application.credentials[:maps_api_key],
         channel: Rails.env
       }
     )
-    result = conn.get('/maps/api/staticmap', {
-      center: "#{@photo.latitude},#{@photo.longitude}",
-      zoom: 18,
-      size: '960x300',
-      maptype: 'hybrid',
-      markers: "color:red|#{@photo.latitude},#{@photo.longitude}"},
-      {'User-Agent': 'mimages'}
+    result = conn.get(
+      '/maps/api/staticmap', {
+        center: "#{@photo.latitude},#{@photo.longitude}",
+        zoom: 18,
+        size: '960x300',
+        maptype: 'hybrid',
+        markers: "color:red|#{@photo.latitude},#{@photo.longitude}"
+      },
+      { 'User-Agent': 'mimages' }
     )
 
     # Copy over a bunch of caching headers.
-    ['Cache-Control', 'Date', 'Expires'].each do |h|
-      if result.headers.has_key?(h.downcase)
-        response.headers[h] = result.headers[h.downcase]
-      end
+    %w[Cache-Control Date Expires].each do |h|
+      response.headers[h] = result.headers[h.downcase] if result.headers.key?(h.downcase)
     end
 
     send_data result.body, type: result.headers['content-type'], disposition: 'inline'

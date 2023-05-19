@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Sessions::OmniauthController < ApplicationController
   skip_before_action :verify_authenticity_token
   skip_before_action :require_auth!
@@ -9,9 +11,9 @@ class Sessions::OmniauthController < ApplicationController
       reset_session
       session[:user_id] = @user.id
 
-      redirect_to root_path, notice: "Signed in"
+      redirect_to root_path, notice: 'Signed in'
     else
-      redirect_to sign_in_path, alert: "Authentication failed"
+      redirect_to sign_in_path, alert: 'Authentication failed'
     end
   end
 
@@ -20,15 +22,16 @@ class Sessions::OmniauthController < ApplicationController
   end
 
   private
-    def user_params
-      { email: omniauth.info.email }
-    end
 
-    def omniauth_params
-      { provider: omniauth.provider, uid: omniauth.uid }
-    end
+  def user_params
+    { email: omniauth.info.email }
+  end
 
-    def omniauth
-      request.env["omniauth.auth"]
-    end
+  def omniauth_params
+    { provider: omniauth.provider, uid: omniauth.uid }
+  end
+
+  def omniauth
+    request.env['omniauth.auth']
+  end
 end
