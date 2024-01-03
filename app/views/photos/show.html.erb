@@ -2,18 +2,22 @@
 <% content_for(:meta_description) { @photo.description } %>
 <% content_for :ldjson do
   ldjson = @photo.ldjson
-  ldjson["contentUrl"] = url_for(@photo.photo)
+  if @photo.photo.present?
+    ldjson["contentUrl"] = url_for(@photo.photo)
+  end
 %>
 <%= raw(ldjson.to_json) %>
 <% end %>
 
 <h1><%= @photo.title %></h1>
 <div id="image">
+  <% if @photo.photo.present? %>
   <a href="<%= url_for(@photo.photo)%>" >
       <%= image_tag(@photo.photo.variant(:medium), alt: @photo.description) %>
       <br />
       Full Image
   </a>
+  <% end %>
   <p><%= @photo.description %></p>
 </div>
 <dl>
