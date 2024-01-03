@@ -28,3 +28,15 @@
     <%= image_tag map_photo_path(@photo), alt: "Map showing a red pin which marks the location the photo was taken" %>
   <% end %>
 </dl>
+
+<% if @photo.user == current_user %>
+<div>
+  Admin Tools
+<ul>
+  <li><%= link_to "Delete", photo_path(@photo), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?"
+    } %></li>
+</ul>
+</div>
+<% end %>

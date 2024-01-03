@@ -61,6 +61,17 @@ class PhotosController < ApplicationController
     send_data result.body, type: result.headers['content-type'], disposition: 'inline'
   end
 
+  def destroy
+    @photo = Photo.find_by(uuid: params[:uuid])
+    if @photo.user != current_user
+      return head :unauthorized
+    else
+      @photo.destroy
+
+      redirect_to root_path, status: :see_other
+    end
+  end
+
   private
 
   def photo_params
