@@ -46,8 +46,7 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-# Rails 7.0 doesn't support SECRET_KEY_BASE_DUMMY, so use a placeholder value.
-RUN SECRET_KEY_BASE=placeholder ./bin/rails assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 # Final stage for app image
 FROM base
