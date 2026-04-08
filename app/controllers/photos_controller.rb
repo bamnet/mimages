@@ -63,13 +63,11 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = Photo.find_by(uuid: params[:uuid])
-    if @photo.user != current_user
-      return head :unauthorized
-    else
-      @photo.destroy
+    return head :unauthorized if @photo.user != current_user
 
-      redirect_to root_path, status: :see_other
-    end
+    @photo.destroy
+
+    redirect_to root_path, status: :see_other
   end
 
   private

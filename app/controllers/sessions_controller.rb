@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  skip_before_action :require_auth!, only: %i[ new ]
+  skip_before_action :require_auth!, only: %i[new]
 
   def new
     @user = User.new

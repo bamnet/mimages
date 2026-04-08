@@ -1,1 +1,3 @@
+# frozen_string_literal: true
+
 Time::DATE_FORMATS[:short_date] = '%b %e, %Y'
