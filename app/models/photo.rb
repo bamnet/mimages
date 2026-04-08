@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Photo < ApplicationRecord
   belongs_to :user
 
@@ -5,7 +7,7 @@ class Photo < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [960, 960]
   end
 
-  validates :title, :presence => true
+  validates :title, presence: true
 
   before_create do
     require 'securerandom'

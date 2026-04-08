@@ -1,9 +1,11 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.17.2"
+# frozen_string_literal: true
 
-set :application, "mimages"
-set :repo_url, "git@github.com:bamnet/mimages.git"
-set :branch, "main"
+# config valid for current version and patch releases of Capistrano
+lock '~> 3.17.2'
+
+set :application, 'mimages'
+set :repo_url, 'git@github.com:bamnet/mimages.git'
+set :branch, 'main'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -26,7 +28,8 @@ set :deploy_to, "/home/mimages/#{fetch :application}"
 set :linked_files, %w[db/production.sqlite3 config/master.key]
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/webpacker', 'public/system', 'vendor',
+       'storage'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
