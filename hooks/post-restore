@@ -2,4 +2,4 @@
 set -e
 
 # Clean up backup artifact after restore
-rm -f /storage/production.sqlite3.backup
+rm -f /rails/storage/production.sqlite3.backup
