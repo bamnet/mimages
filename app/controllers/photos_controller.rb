@@ -38,7 +38,7 @@ class PhotosController < ApplicationController
       'https://maps.googleapis.com',
       request: { timeout: 5 },
       params: {
-        key: Rails.application.credentials[:maps_api_key],
+        key: ENV.fetch('GOOGLE_MAPS_API_KEY'),
         channel: Rails.env
       }
     )
