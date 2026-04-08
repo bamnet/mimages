@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# Create a consistent SQLite backup before Once snapshots /storage.
+# Uses SQLite's online backup API so the app can keep serving requests.
+if [ -f /rails/storage/production.sqlite3 ]; then
+  sqlite3 /rails/storage/production.sqlite3 "VACUUM INTO '/rails/storage/production.sqlite3.backup'"
+fi

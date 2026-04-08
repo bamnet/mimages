@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Health check for Once deployment
+  get "up", to: proc { [200, {}, ["OK"]] }
+
   get  "sign_in", to: "sessions#new"
   delete  "sign_out", to: "sessions#destroy"
   get  "/auth/failure",            to: "sessions/omniauth#failure"
